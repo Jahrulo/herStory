@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useBlog } from "@/contexts/BlogContext";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Calendar, User, Sparkles } from "lucide-react";
 
 export default function BlogDetail() {
   const { id } = useParams<{ id: string }>();
@@ -11,19 +11,19 @@ export default function BlogDetail() {
 
   if (!post) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-brand-deep-purple font-montserrat mb-4">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-50 to-white">
+        <div className="text-center bg-white rounded-2xl shadow-xl p-12 border border-gray-200 animate-fade-in">
+          <h1 className="text-4xl md:text-5xl font-bold text-brand-deep-purple font-montserrat mb-4">
             Post Not Found
           </h1>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600 mb-8 text-lg">
             The blog post you're looking for doesn't exist.
           </p>
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-brand-purple hover:text-brand-pink font-semibold transition-colors"
+            className="inline-flex items-center gap-2 bg-brand-purple text-white px-6 py-3 rounded-xl font-semibold hover:bg-brand-deep-purple transition-colors shadow-lg hover:shadow-xl"
           >
-            <ArrowLeft size={16} /> Back to Blog
+            <ArrowLeft size={18} /> Back to Blog
           </Link>
         </div>
       </div>
@@ -31,58 +31,72 @@ export default function BlogDetail() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50/50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-brand-deep-purple to-brand-purple text-white py-12 md:py-16">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative bg-gradient-to-br from-brand-deep-purple via-brand-purple to-brand-light-blue text-white py-10 md:py-14 overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-brand-pink rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-gold rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
+        </div>
+
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in">
           <button
             onClick={() => navigate(-1)}
-            className="inline-flex items-center gap-2 mb-6 hover:text-brand-gold transition-colors"
+            className="inline-flex items-center gap-2 mb-4 hover:text-brand-gold transition-colors bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20"
           >
-            <ArrowLeft size={20} /> Back
+            <ArrowLeft size={18} /> Back
           </button>
-          <span className="inline-block bg-brand-pink/30 text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
+          <div className="inline-block bg-brand-pink/20 backdrop-blur-sm border border-white/30 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide mb-4">
             {post.theme}
-          </span>
-          <h1 className="text-4xl md:text-5xl font-bold font-montserrat mb-4">
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-montserrat mb-4 leading-tight">
             {post.title}
           </h1>
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-gray-200">
-            <span>By {post.author}</span>
-            <span className="hidden sm:inline">•</span>
-            <time>
-              {new Date(post.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
+            <div className="flex items-center gap-2">
+              <User size={18} />
+              <span className="font-medium">{post.author}</span>
+            </div>
+            <span className="hidden sm:inline text-gray-400">•</span>
+            <div className="flex items-center gap-2">
+              <Calendar size={18} />
+              <time className="font-medium">
+                {new Date(post.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <section className="py-12 md:py-20">
+      <section className="py-8 md:py-12">
         <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg max-w-none">
-            {post.content.split("\n\n").map((paragraph, idx) => (
-              <p key={idx} className="text-gray-700 leading-relaxed mb-6">
-                {paragraph}
-              </p>
-            ))}
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200/50 p-6 md:p-10 mb-8 animate-fade-in">
+            <div className="prose prose-lg max-w-none">
+              {post.content.split("\n\n").map((paragraph, idx) => (
+                <p key={idx} className="text-gray-700 leading-relaxed mb-4 text-lg md:text-xl">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </div>
 
           {/* Author Bio */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <div className="flex items-center gap-4 p-6 bg-gray-50 rounded-lg">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-purple to-brand-pink flex items-center justify-center flex-shrink-0">
-                <span className="text-2xl">👩‍⚖️</span>
+          <div className="mb-8 animate-slide-up">
+            <div className="flex items-center gap-5 p-6 bg-white rounded-2xl shadow-sm border border-gray-200/50 hover:shadow-md transition-shadow">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-brand-purple to-brand-pink flex items-center justify-center flex-shrink-0 shadow-lg border-4 border-white">
+                <span className="text-3xl">👩‍⚖️</span>
               </div>
               <div>
-                <h3 className="font-bold text-brand-deep-purple font-montserrat">
+                <h3 className="font-bold text-brand-deep-purple font-montserrat text-xl mb-1">
                   {post.author}
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 text-base leading-relaxed">
                   Lawyer, Writer & Feminist Storyteller. Creator of Embracing
                   HERstory.
                 </p>
@@ -91,16 +105,16 @@ export default function BlogDetail() {
           </div>
 
           {/* Navigation */}
-          <div className="mt-12 flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in">
             <Link
               to="/blog"
-              className="flex-1 px-6 py-3 bg-brand-purple text-white rounded-lg font-semibold hover:bg-brand-deep-purple transition-colors text-center"
+              className="flex-1 px-6 py-4 bg-brand-purple text-white rounded-xl font-semibold hover:bg-brand-deep-purple transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2"
             >
-              ← Back to All Blog Posts
+              <ArrowLeft size={18} /> Back to All Blog Posts
             </Link>
             <a
               href="mailto:henriettamarief@gmail.com"
-              className="flex-1 px-6 py-3 bg-brand-gold text-brand-deep-purple rounded-lg font-semibold hover:bg-brand-pink hover:text-white transition-colors text-center"
+              className="flex-1 px-6 py-4 bg-gradient-to-r from-brand-gold to-brand-pink text-white rounded-xl font-semibold hover:from-brand-pink hover:to-brand-purple transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-center"
             >
               Share Your Thoughts →
             </a>

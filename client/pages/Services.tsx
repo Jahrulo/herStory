@@ -66,14 +66,24 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50/50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-brand-deep-purple to-brand-purple text-white py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold font-montserrat mb-6">
+      <section className="relative bg-gradient-to-br from-brand-deep-purple via-brand-purple to-brand-light-blue text-white py-12 md:py-16 overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-brand-pink rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-gold rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in">
+          <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+            <Briefcase size={18} className="text-brand-gold" />
+            <span className="text-sm font-semibold uppercase tracking-wide">Professional Services</span>
+          </div>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-montserrat mb-4 leading-tight">
             Legal Services & Practice Areas
           </h1>
-          <p className="text-xl text-gray-100 max-w-3xl">
+          <p className="text-xl md:text-2xl text-gray-100 max-w-3xl leading-relaxed">
             As a legal practitioner, I offer tailored legal support grounded in
             clarity, integrity, and empowerment.
           </p>
@@ -81,27 +91,31 @@ export default function Services() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 md:py-24">
+      <section className="py-8 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-brand-deep-purple font-montserrat mb-12">
-            Core Services
-          </h2>
+          <div className="text-center mb-8 animate-slide-up">
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-deep-purple font-montserrat mb-3">
+              Core Services
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-brand-purple via-brand-pink to-brand-light-blue mx-auto rounded-full mb-4" />
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => {
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {services.map((service, index) => {
               const Icon = service.icon;
               return (
                 <div
                   key={service.title}
-                  className="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow"
+                  className="bg-white border border-gray-200/50 rounded-2xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group animate-fade-in"
+                  style={{ animationDelay: `${index * 0.05}s` }}
                 >
-                  <div className="h-12 w-12 bg-brand-purple/10 rounded-lg flex items-center justify-center mb-4">
-                    <Icon className="text-brand-purple" size={24} />
+                  <div className="h-14 w-14 bg-brand-purple/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-brand-purple/20 transition-colors">
+                    <Icon className="text-brand-purple" size={28} />
                   </div>
-                  <h3 className="text-xl font-bold text-brand-deep-purple font-montserrat mb-3">
+                  <h3 className="text-xl font-bold text-brand-deep-purple font-montserrat mb-3 group-hover:text-brand-purple transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed text-base">
                     {service.description}
                   </p>
                 </div>
@@ -112,77 +126,58 @@ export default function Services() {
       </section>
 
       {/* About My Approach */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-8 md:py-12 bg-gradient-to-br from-white via-brand-light-blue/5 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-brand-deep-purple font-montserrat mb-8">
-            My Approach to Legal Practice
-          </h2>
+          <div className="text-center mb-8 animate-slide-up">
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-deep-purple font-montserrat mb-3">
+              My Approach to Legal Practice
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-brand-purple via-brand-pink to-brand-light-blue mx-auto rounded-full mb-4" />
+          </div>
 
-          <div className="space-y-6">
-            <div className="bg-white p-6 rounded-lg border-l-4 border-brand-purple">
-              <h3 className="text-xl font-semibold text-brand-deep-purple mb-2 font-montserrat">
-                Clarity & Communication
-              </h3>
-              <p className="text-gray-700">
-                Legal concepts should never obscure understanding. I communicate
-                complex legal matters in clear, accessible language so you can
-                make informed decisions.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg border-l-4 border-brand-pink">
-              <h3 className="text-xl font-semibold text-brand-deep-purple mb-2 font-montserrat">
-                Integrity & Ethics
-              </h3>
-              <p className="text-gray-700">
-                My practice is grounded in ethical principles and genuine
-                commitment to my clients' best interests, not legal procedures
-                alone.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg border-l-4 border-brand-gold">
-              <h3 className="text-xl font-semibold text-brand-deep-purple mb-2 font-montserrat">
-                Empowerment & Advocacy
-              </h3>
-              <p className="text-gray-700">
-                I believe clients should be empowered in their legal matters. My
-                role is to advocate for your rights while equipping you with the
-                knowledge to navigate legal challenges.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg border-l-4 border-brand-light-blue">
-              <h3 className="text-xl font-semibold text-brand-deep-purple mb-2 font-montserrat">
-                Gender-Conscious Practice
-              </h3>
-              <p className="text-gray-700">
-                I bring a gender-conscious lens to legal practice, recognizing
-                how gender shapes legal outcomes, access to justice, and lived
-                experiences.
-              </p>
-            </div>
+          <div className="grid md:grid-cols-2 gap-4">
+            {[
+              { title: "Clarity & Communication", color: "border-brand-purple", desc: "Clear, accessible language for informed decisions." },
+              { title: "Integrity & Ethics", color: "border-brand-pink", desc: "Grounded in ethical principles and genuine commitment." },
+              { title: "Empowerment & Advocacy", color: "border-brand-gold", desc: "Equipping you with knowledge while advocating for your rights." },
+              { title: "Gender-Conscious Practice", color: "border-brand-light-blue", desc: "Recognizing how gender shapes legal outcomes and access to justice." },
+            ].map((approach, idx) => (
+              <div
+                key={approach.title}
+                className={`bg-white p-5 rounded-2xl border-l-4 ${approach.color} shadow-sm hover:shadow-md transition-all group animate-fade-in`}
+                style={{ animationDelay: `${idx * 0.1}s` }}
+              >
+                <h3 className="text-lg font-semibold text-brand-deep-purple mb-2 font-montserrat group-hover:text-brand-purple transition-colors">
+                  {approach.title}
+                </h3>
+                <p className="text-gray-700 leading-relaxed text-sm md:text-base">
+                  {approach.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-brand-deep-purple font-montserrat mb-6">
-            Ready to Get Started?
-          </h2>
-          <p className="text-lg text-gray-700 mb-8">
-            Whether you need legal representation, consultation, or policy
-            advice, I'm here to help. Let's discuss your needs and find the best
-            path forward.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-block bg-brand-purple text-white px-8 py-4 rounded-lg font-semibold hover:bg-brand-deep-purple transition-colors"
-          >
-            Contact Me for a Consultation
-          </Link>
+      <section className="py-8 md:py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-scale-in">
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-100">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-deep-purple font-montserrat mb-4">
+              Ready to Get Started?
+            </h2>
+            <p className="text-lg md:text-xl text-gray-700 mb-6 leading-relaxed">
+              Whether you need legal representation, consultation, or policy
+              advice, I'm here to help. Let's discuss your needs and find the best
+              path forward.
+            </p>
+            <Link
+              to="/contact"
+              className="inline-block bg-gradient-to-r from-brand-purple to-brand-pink text-white px-8 py-4 rounded-xl font-semibold hover:from-brand-deep-purple hover:to-brand-purple transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            >
+              Contact Me for a Consultation
+            </Link>
+          </div>
         </div>
       </section>
     </div>
