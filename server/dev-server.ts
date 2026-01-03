@@ -30,7 +30,7 @@ export async function createDevServer() {
   });
 
   // Use Vite's connect instance as middleware
-  app.use(vite.ssrLoadModule);
+  app.use(vite.middlewares);
 
   // Health check routes
   app.get("/api/ping", (req, res) => {

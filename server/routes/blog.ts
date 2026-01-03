@@ -62,8 +62,12 @@ export const createPost: RequestHandler = async (req, res) => {
 
     const post = await prisma.blogPost.create({
       data: {
-        ...data,
+        title: data.title,
+        excerpt: data.excerpt,
+        content: data.content,
         date: new Date(data.date),
+        theme: data.theme,
+        author: data.author,
       },
     });
 
@@ -89,8 +93,12 @@ export const updatePost: RequestHandler = async (req, res) => {
     const post = await prisma.blogPost.update({
       where: { id },
       data: {
-        ...data,
+        title: data.title,
+        excerpt: data.excerpt,
+        content: data.content,
         date: new Date(data.date),
+        theme: data.theme,
+        author: data.author,
       },
     });
 

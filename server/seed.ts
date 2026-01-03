@@ -12,7 +12,7 @@ async function main() {
 
   // Create admin user
   const adminUsername = process.env.ADMIN_USERNAME || "admin";
-  const adminPassword = process.env.ADMIN_PASSWORD || "password";
+  const adminPassword = process.env.ADMIN_PASSWORD || "password123";
 
   // Check if admin already exists
   const existingAdmin = await prisma.admin.findUnique({
