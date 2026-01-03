@@ -17,7 +17,7 @@ export default function BlogDetail() {
             Post Not Found
           </h1>
           <p className="text-gray-600 mb-6">
-            The essay you're looking for doesn't exist.
+            The blog post you're looking for doesn't exist.
           </p>
           <Link
             to="/blog"
@@ -96,7 +96,7 @@ export default function BlogDetail() {
               to="/blog"
               className="flex-1 px-6 py-3 bg-brand-purple text-white rounded-lg font-semibold hover:bg-brand-deep-purple transition-colors text-center"
             >
-              ← Back to All Essays
+              ← Back to All Blog Posts
             </Link>
             <a
               href="mailto:henriettamarief@gmail.com"

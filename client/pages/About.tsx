@@ -45,7 +45,7 @@ export default function About() {
 
             <p className="text-lg text-gray-700 leading-relaxed">
               I am also a writer, a part of me that refuses to be separated from
-              the lawyer. I write essays, reflections, and stories that explore
+              the lawyer. I write blog posts, reflections, and stories that explore
               women's journeys, emotional resilience, feminist agency, and the
               private worlds we are often told to silence. This passion led me to
               create Embracing HERstory, a storytelling space dedicated to

@@ -385,7 +385,7 @@ export default function AdminDashboard() {
                       No blog posts yet.
                     </p>
                     <p className="text-gray-500 text-sm mt-2">
-                      Click "New Blog Post" to create your first essay.
+                      Click "New Blog Post" to create your first blog post.
                     </p>
                   </div>
                 )}

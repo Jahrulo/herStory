@@ -4,7 +4,7 @@ A complete, responsive single-page application celebrating feminist storytelling
 
 ## Overview
 
-**Embracing HERstory** is a modern web application that serves as both a personal brand website and a feminist storytelling platform. The site showcases Henrietta Marie Foray's work as a lawyer, writer, and feminist storyteller, with a dedicated blog for essays on gender, technology, law, and social justice.
+**Embracing HERstory** is a modern web application that serves as both a personal brand website and a feminist storytelling platform. The site showcases Henrietta Marie Foray's work as a lawyer, writer, and feminist storyteller, with a dedicated blog for blog posts on gender, technology, law, and social justice.
 
 ### Brand Identity
 
@@ -61,13 +61,13 @@ shared/              # Shared types
 1. **Home Page** - Landing page with hero section, brand identity, and call-to-action buttons
 2. **About Page** - Biography, professional background, values, and fun facts
 3. **Blog Listing** - All blog posts with categories, email subscription form
-4. **Blog Post Detail** - Full essay view with author bio and sharing options
+4. **Blog Post Detail** - Full blog post view with author bio and sharing options
 5. **Services Page** - Legal services and practice areas
 6. **Contact Page** - Contact form and multiple contact methods
 
 ### Admin Features
 
-- **Authentication:** Login with hardcoded credentials 
+- **Authentication:** Login with hardcoded credentials
 - **Blog Management:** Full CRUD operations for blog posts
 - **Persistence:** Blog posts saved to localStorage across sessions
 - **Post Fields:** Title, excerpt, content, date, theme, author
@@ -93,10 +93,9 @@ shared/              # Shared types
 ### Sample Data
 
 The application comes with 2 sample blog posts:
+
 1. "Feminist Journeys: Reclaiming My Voice"
 2. "Tech & Gender: Who Gets to Build the Future?"
-
-
 
 ## Admin Access
 
@@ -117,12 +116,9 @@ The site uses a feminist-inspired color scheme:
 ## localStorage Structure
 
 ### Blog Posts
+
 - Key: `embracing-herstory-posts`
 - Format: Array of BlogPost objects with id, title, excerpt, content, date, theme, author
-
-
-
-
 
 ## Browser Support
 
@@ -133,6 +129,7 @@ The site uses a feminist-inspired color scheme:
 ## Future Enhancements
 
 Potential features for future versions:
+
 - Real email backend integration
 - User comments on blog posts
 - Search functionality

@@ -82,7 +82,7 @@ export default function Blog() {
           <div className="flex items-center gap-4 mb-4">
             <Mail className="text-brand-purple" size={24} />
             <h2 className="text-2xl font-bold text-brand-deep-purple font-montserrat">
-              Subscribe to New Essays
+              Subscribe to New Blog Posts
             </h2>
           </div>
           <p className="text-gray-600 mb-6">
@@ -116,7 +116,7 @@ export default function Blog() {
       <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-brand-deep-purple font-montserrat mb-12">
-            Featured Essays
+            Featured Blog Posts
           </h2>
 
           {posts.length > 0 ? (
@@ -128,7 +128,7 @@ export default function Blog() {
           ) : (
             <div className="text-center py-12">
               <p className="text-gray-600 text-lg">
-                No essays published yet. Check back soon.
+                No blog posts published yet. Check back soon.
               </p>
             </div>
           )}

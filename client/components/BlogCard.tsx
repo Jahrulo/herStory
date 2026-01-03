@@ -39,7 +39,7 @@ export default function BlogCard({ post }: BlogCardProps) {
           to={`/blog/${post.id}`}
           className="inline-flex items-center gap-2 text-brand-purple hover:text-brand-pink font-semibold transition-colors"
         >
-          Read Full Essay
+          Read Full Blog Post
           <ArrowRight size={16} />
         </Link>
       </div>

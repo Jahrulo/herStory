@@ -81,7 +81,7 @@ export default function Home() {
                 Read Embracing HERstory
               </h3>
               <p className="text-gray-600 mb-6">
-                Explore essays and stories about feminist journeys, gender, tech
+                Explore blog posts and stories about feminist journeys, gender, tech
                 policy, and the beautiful complexity of womanhood.
               </p>
               <span className="inline-block text-brand-purple font-semibold group-hover:text-brand-pink transition">

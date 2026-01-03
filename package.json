@@ -11,7 +11,7 @@
     ]
   },
   "scripts": {
-    "dev": "concurrently \"pnpm dev:server\" \"vite\"",
+    "dev": "concurrently \"npm run dev:server\" \"vite\"",
     "dev:server": "tsx watch server/dev.ts",
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build",
