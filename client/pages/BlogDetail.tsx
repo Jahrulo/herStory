@@ -37,20 +37,25 @@ export default function BlogDetail() {
         {/* Decorative background elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-brand-pink rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-gold rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
+          <div
+            className="absolute bottom-20 right-10 w-96 h-96 bg-brand-gold rounded-full blur-3xl animate-float"
+            style={{ animationDelay: "1s" }}
+          />
         </div>
 
-        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in">
-          <button
-            onClick={() => navigate(-1)}
-            className="inline-flex items-center gap-2 mb-4 hover:text-brand-gold transition-colors bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20"
-          >
-            <ArrowLeft size={18} /> Back
-          </button>
-          <div className="inline-block bg-brand-pink/20 backdrop-blur-sm border border-white/30 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide mb-4">
-            {post.theme}
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in">
+          <div className="flex items-center gap-3 mb-6">
+            <button
+              onClick={() => navigate(-1)}
+              className="inline-flex items-center gap-2 hover:text-brand-gold transition-colors bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20"
+            >
+              <ArrowLeft size={18} /> Back
+            </button>
+            <div className="inline-block bg-brand-pink/20 backdrop-blur-sm border border-white/30 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide">
+              {post.theme}
+            </div>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-montserrat mb-4 leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-montserrat mb-6 leading-tight text-left">
             {post.title}
           </h1>
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-gray-200">
@@ -75,11 +80,15 @@ export default function BlogDetail() {
 
       {/* Content */}
       <section className="py-8 md:py-12">
-        <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-200/50 p-6 md:p-10 mb-8 animate-fade-in">
-            <div className="prose prose-lg max-w-none">
+        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200/50 p-8 md:p-12 mb-10 animate-fade-in">
+            <div className="max-w-none">
               {post.content.split("\n\n").map((paragraph, idx) => (
-                <p key={idx} className="text-gray-700 leading-relaxed mb-4 text-lg md:text-xl">
+                <p
+                  key={idx}
+                  className="text-gray-700 leading-relaxed mb-6 text-lg md:text-xl text-left"
+                  style={{ textAlign: "left" }}
+                >
                   {paragraph}
                 </p>
               ))}
@@ -87,16 +96,16 @@ export default function BlogDetail() {
           </div>
 
           {/* Author Bio */}
-          <div className="mb-8 animate-slide-up">
-            <div className="flex items-center gap-5 p-6 bg-white rounded-2xl shadow-sm border border-gray-200/50 hover:shadow-md transition-shadow">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-brand-purple to-brand-pink flex items-center justify-center flex-shrink-0 shadow-lg border-4 border-white">
-                <span className="text-3xl">👩‍⚖️</span>
+          <div className="mb-10 animate-slide-up">
+            <div className="flex items-center gap-6 p-6 md:p-8 bg-white rounded-2xl shadow-sm border border-gray-200/50 hover:shadow-md transition-shadow">
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-brand-purple to-brand-pink flex items-center justify-center flex-shrink-0 shadow-lg border-4 border-white">
+                <span className="text-3xl md:text-4xl">👩‍⚖️</span>
               </div>
               <div>
-                <h3 className="font-bold text-brand-deep-purple font-montserrat text-xl mb-1">
+                <h3 className="font-bold text-brand-deep-purple font-montserrat text-xl md:text-2xl mb-2">
                   {post.author}
                 </h3>
-                <p className="text-gray-600 text-base leading-relaxed">
+                <p className="text-gray-600 text-base md:text-lg leading-relaxed">
                   Lawyer, Writer & Feminist Storyteller. Creator of Embracing
                   HERstory.
                 </p>
