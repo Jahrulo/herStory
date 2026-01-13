@@ -75,17 +75,15 @@ export async function createServer() {
   return app;
 }
 
-// Start server if this file is run directly
-if (import.meta.url === `file://${process.argv[1]}`) {
-  const port = process.env.PORT || 8080;
-  createServer()
-    .then((app) => {
-      app.listen(port, () => {
-        console.log(`Server running on port ${port}`);
-      });
-    })
-    .catch((error) => {
-      console.error("Failed to start server:", error);
-      process.exit(1);
+// Start server - this file is the entry point for production
+const port = process.env.PORT || 8080;
+createServer()
+  .then((app) => {
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
     });
-}
+  })
+  .catch((error) => {
+    console.error("Failed to start server:", error);
+    process.exit(1);
+  });
