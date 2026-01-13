@@ -64,15 +64,11 @@ Render is ideal for this application since it serves both the frontend and backe
 2. **Before deploying**: Ensure your lockfile is up to date:
 
    ```bash
-   # If using pnpm (recommended)
-   pnpm install
-   git add pnpm-lock.yaml
-   git commit -m "Update pnpm lockfile"
-
-   # Or if switching to npm
+   # Update npm lockfile (render.yaml uses npm)
    npm install
    git add package-lock.json
-   git commit -m "Add npm lockfile"
+   git commit -m "Update npm lockfile"
+   git push
    ```
 
 3. In Render dashboard, click **"New +"** → **"Blueprint"**
@@ -308,36 +304,22 @@ You'll need to create an admin user. You can do this by:
 
 If you see errors like "specifiers in the lockfile don't match specifiers in package.json" or "vite: not found":
 
-- **Quick Fix**: The `render.yaml` is configured with `--no-frozen-lockfile` to allow lockfile updates during build. This should resolve immediate deployment issues.
+- **The `render.yaml` is configured to use npm** (more reliable on Render). Make sure:
+  - `package-lock.json` is committed to your repository
+  - Run `npm install` locally to ensure lockfile is up to date before committing
+  - Commit and push the updated `package-lock.json`
 
-- **Proper Fix** (recommended): Update your lockfile locally before deploying:
+- **If you were using pnpm**: The configuration has been switched to npm because Render auto-detects pnpm and uses `--frozen-lockfile` by default, which can cause issues. You can keep `pnpm-lock.yaml` for local development, but Render will use npm.
 
+- **Ensure devDependencies are installed**: Build tools like `vite` are in devDependencies and must be installed for the build to work. `npm install` installs devDependencies by default.
+
+- **To update lockfile before deploying**:
   ```bash
-  # Make sure you're using the correct package manager
-  pnpm install
-
-  # Verify the lockfile was updated
-  git status
-
-  # Commit and push
-  git add pnpm-lock.yaml
-  git commit -m "Update pnpm lockfile"
+  npm install
+  git add package-lock.json
+  git commit -m "Update npm lockfile"
   git push
   ```
-
-- **If using pnpm** (recommended): The `render.yaml` is configured to use pnpm. Make sure:
-  - `pnpm-lock.yaml` is committed to your repository
-  - If you have both `package-lock.json` and `pnpm-lock.yaml`, consider removing `package-lock.json` to avoid conflicts
-  - Run `pnpm install` locally to ensure lockfile is up to date before committing
-
-- **If pnpm doesn't work on Render**: You can switch to npm by:
-  1. Update `render.yaml` buildCommand to: `npm ci && npm run build && npx prisma generate`
-  2. Update `render.yaml` startCommand to: `npm start`
-  3. Run `npm install` locally to regenerate `package-lock.json`
-  4. Commit the updated `package-lock.json`
-  5. Consider removing `pnpm-lock.yaml` if switching to npm permanently
-
-- **Ensure devDependencies are installed**: Build tools like `vite` are in devDependencies and must be installed for the build to work. Both `npm install` and `pnpm install` install devDependencies by default.
 
 **3. CORS Errors (Vercel + Render)**
 
