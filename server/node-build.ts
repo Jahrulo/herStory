@@ -23,7 +23,11 @@ export async function createServer() {
   await connectDatabase();
 
   // CORS configuration
-  app.use(cors());
+  const corsOptions = {
+    origin: process.env.CORS_ORIGIN || "*",
+    credentials: true,
+  };
+  app.use(cors(corsOptions));
 
   // Parse JSON bodies
   app.use(express.json());
