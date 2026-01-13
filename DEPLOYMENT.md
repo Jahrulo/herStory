@@ -61,12 +61,26 @@ Render is ideal for this application since it serves both the frontend and backe
 #### Option A: Using render.yaml (Recommended)
 
 1. Make sure `render.yaml` is committed to your repository
-2. In Render dashboard, click **"New +"** → **"Blueprint"**
-3. Connect your GitHub repository
-4. Render will automatically detect `render.yaml` and create the services
-5. Review the configuration and click **"Apply"**
-6. **Important**: After the service is created, go to the service settings → **"Environment"** tab
-7. Set the `DATABASE_URL` environment variable with your Neon connection string:
+2. **Before deploying**: Ensure your lockfile is up to date:
+
+   ```bash
+   # If using pnpm (recommended)
+   pnpm install
+   git add pnpm-lock.yaml
+   git commit -m "Update pnpm lockfile"
+
+   # Or if switching to npm
+   npm install
+   git add package-lock.json
+   git commit -m "Add npm lockfile"
+   ```
+
+3. In Render dashboard, click **"New +"** → **"Blueprint"**
+4. Connect your GitHub repository
+5. Render will automatically detect `render.yaml` and create the services
+6. Review the configuration and click **"Apply"**
+7. **Important**: After the service is created, go to the service settings → **"Environment"** tab
+8. Set the `DATABASE_URL` environment variable with your Neon connection string:
    - Key: `DATABASE_URL`
    - Value: Your Neon connection string (from Step 1)
    - Make sure it includes `?sslmode=require` at the end
@@ -289,6 +303,24 @@ You'll need to create an admin user. You can do this by:
 - Check Node.js version (Render uses Node 18+ by default)
 - Verify all dependencies are in `package.json`
 - Check build logs for specific errors
+
+**2a. Lockfile Mismatch / Package Manager Issues**
+
+If you see errors like "specifiers in the lockfile don't match specifiers in package.json" or "vite: not found":
+
+- **If using pnpm** (recommended): The `render.yaml` is configured to use pnpm. Make sure:
+  - `pnpm-lock.yaml` is committed to your repository
+  - If you have both `package-lock.json` and `pnpm-lock.yaml`, consider removing `package-lock.json` to avoid conflicts
+  - Run `pnpm install` locally to ensure lockfile is up to date before committing
+
+- **If pnpm doesn't work on Render**: You can switch to npm by:
+  1. Update `render.yaml` buildCommand to: `npm ci && npm run build && npx prisma generate`
+  2. Update `render.yaml` startCommand to: `npm start`
+  3. Run `npm install` locally to regenerate `package-lock.json`
+  4. Commit the updated `package-lock.json`
+  5. Consider removing `pnpm-lock.yaml` if switching to npm permanently
+
+- **Ensure devDependencies are installed**: Build tools like `vite` are in devDependencies and must be installed for the build to work. Both `npm install` and `pnpm install` install devDependencies by default.
 
 **3. CORS Errors (Vercel + Render)**
 

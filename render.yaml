@@ -4,8 +4,8 @@ services:
     name: herstory-app
     env: node
     plan: starter # Change to 'standard' or 'pro' for production
-    buildCommand: npm install && npm run build && npx prisma generate
-    startCommand: npm start
+    buildCommand: npm install -g pnpm@latest && pnpm install && pnpm run build && pnpm exec prisma generate
+    startCommand: pnpm start
     envVars:
       - key: NODE_ENV
         value: production
