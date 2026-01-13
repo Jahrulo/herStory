@@ -308,6 +308,23 @@ You'll need to create an admin user. You can do this by:
 
 If you see errors like "specifiers in the lockfile don't match specifiers in package.json" or "vite: not found":
 
+- **Quick Fix**: The `render.yaml` is configured with `--no-frozen-lockfile` to allow lockfile updates during build. This should resolve immediate deployment issues.
+
+- **Proper Fix** (recommended): Update your lockfile locally before deploying:
+
+  ```bash
+  # Make sure you're using the correct package manager
+  pnpm install
+
+  # Verify the lockfile was updated
+  git status
+
+  # Commit and push
+  git add pnpm-lock.yaml
+  git commit -m "Update pnpm lockfile"
+  git push
+  ```
+
 - **If using pnpm** (recommended): The `render.yaml` is configured to use pnpm. Make sure:
   - `pnpm-lock.yaml` is committed to your repository
   - If you have both `package-lock.json` and `pnpm-lock.yaml`, consider removing `package-lock.json` to avoid conflicts
