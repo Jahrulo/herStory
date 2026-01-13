@@ -57,10 +57,15 @@ export async function createServer() {
   app.delete("/api/blog/:id", requireAuth, blogRoutes.deletePost);
 
   // SPA fallback - serve index.html for all non-API routes
-  app.get("*", (req, res) => {
+  app.use((req, res, next) => {
     // Skip API routes
     if (req.path.startsWith("/api/")) {
       return res.status(404).json({ error: "Not found" });
+    }
+
+    // Only handle GET requests for the SPA
+    if (req.method !== "GET") {
+      return next();
     }
 
     try {
