@@ -81,18 +81,17 @@ export default function AdminLogin() {
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  {showPassword ? (
-                    <EyeOff size={20} />
-                  ) : (
-                    <Eye size={20} />
-                  )}
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
             </div>
 
             {error && (
               <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
-                <AlertCircle className="text-red-600 flex-shrink-0 mt-0.5" size={18} />
+                <AlertCircle
+                  className="text-red-600 flex-shrink-0 mt-0.5"
+                  size={18}
+                />
                 <p className="text-red-700 text-sm">{error}</p>
               </div>
             )}
@@ -106,7 +105,14 @@ export default function AdminLogin() {
             </button>
           </form>
 
-         
+          <div className="mt-6 text-center">
+            <button
+              onClick={() => navigate("/")}
+              className="text-sm text-gray-600 hover:text-brand-purple transition-colors"
+            >
+              ← Back to Home
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -124,10 +124,19 @@ export default function Footer() {
 
         {/* Divider */}
         <div className="border-t border-white/20 pt-8">
-          <p className="text-center text-gray-300 text-sm">
-            © {currentYear} Henrietta Marie Foray. All rights reserved. Built
-            with purpose, passion, and commitment to feminist storytelling.
-          </p>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-center md:text-left text-gray-300 text-sm">
+              © {currentYear} Henrietta Marie Foray. All rights reserved. Built
+              with purpose, passion, and commitment to feminist storytelling.
+            </p>
+            <Link
+              to="/admin"
+              className="text-gray-400 hover:text-brand-gold text-xs transition-colors"
+              aria-label="Admin Access"
+            >
+              Site Admin
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
