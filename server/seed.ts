@@ -11,8 +11,8 @@ async function main() {
   console.log("🌱 Starting database seed...");
 
   // Create admin user
-  const adminUsername = process.env.ADMIN_USERNAME || "admin";
-  const adminPassword = process.env.ADMIN_PASSWORD || "password123";
+  const adminUsername = process.env.ADMIN_USERNAME || "henrietta";
+  const adminPassword = process.env.ADMIN_PASSWORD || "herstory@2026";
 
   // Check if admin already exists
   const existingAdmin = await prisma.admin.findUnique({
