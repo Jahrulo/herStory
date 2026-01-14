@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { LoginRequest, LoginResponse, VerifyResponse } from "@shared/api";
+import { getApiUrl } from "../lib/api";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -98,7 +99,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     try {
-      const response = await fetchWithTimeout("/api/auth/verify", {
+      const response = await fetchWithTimeout(getApiUrl("/api/auth/verify"), {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -133,7 +134,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     try {
       const request: LoginRequest = { username, password };
-      const response = await fetchWithTimeout("/api/auth/login", {
+      const response = await fetchWithTimeout(getApiUrl("/api/auth/login"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

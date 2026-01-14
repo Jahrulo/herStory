@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { BlogPost, BlogPostsResponse, ErrorResponse } from "@shared/api";
+import { apiFetch } from "../lib/api";
 
 interface BlogContextType {
   posts: BlogPost[];
@@ -47,7 +48,7 @@ export function BlogProvider({ children }: { children: React.ReactNode }) {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch("/api/blog");
+      const response = await apiFetch("/api/blog");
       if (!response.ok) {
         const errorData: ErrorResponse = await response.json();
         throw new Error(errorData.error || "Failed to fetch posts");
@@ -65,7 +66,7 @@ export function BlogProvider({ children }: { children: React.ReactNode }) {
 
   const addPost = async (post: Omit<BlogPost, "id">): Promise<boolean> => {
     try {
-      const response = await fetch("/api/blog", {
+      const response = await apiFetch("/api/blog", {
         method: "POST",
         headers: getAuthHeaders(),
         body: JSON.stringify(post),
@@ -89,7 +90,7 @@ export function BlogProvider({ children }: { children: React.ReactNode }) {
 
   const updatePost = async (id: string, post: Omit<BlogPost, "id">): Promise<boolean> => {
     try {
-      const response = await fetch(`/api/blog/${id}`, {
+      const response = await apiFetch(`/api/blog/${id}`, {
         method: "PUT",
         headers: getAuthHeaders(),
         body: JSON.stringify(post),
@@ -113,7 +114,7 @@ export function BlogProvider({ children }: { children: React.ReactNode }) {
 
   const deletePost = async (id: string): Promise<boolean> => {
     try {
-      const response = await fetch(`/api/blog/${id}`, {
+      const response = await apiFetch(`/api/blog/${id}`, {
         method: "DELETE",
         headers: getAuthHeaders(),
       });

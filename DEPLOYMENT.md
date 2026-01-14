@@ -123,6 +123,8 @@ After the first deployment:
 
 ## Vercel Deployment (Frontend Only)
 
+**Note:** The client is now configured to use the Render backend URL when deployed separately. The `VITE_API_URL` environment variable controls this.
+
 If you want to deploy the frontend separately on Vercel and backend on Render:
 
 ### Prerequisites
@@ -130,17 +132,19 @@ If you want to deploy the frontend separately on Vercel and backend on Render:
 - Backend deployed on Render (follow steps above)
 - Vercel account (sign up at [vercel.com](https://vercel.com))
 
-### Step 1: Update API Configuration
+### Step 1: Verify API Configuration
 
-You'll need to update the client code to use the Render backend URL. Create an environment variable for the API URL.
+The client is already configured to use the Render backend URL via the `VITE_API_URL` environment variable.
 
-1. Create a `.env.production` file:
+1. The `vercel.json` file already has the API URL configured:
 
-   ```env
-   VITE_API_URL=https://your-render-app.onrender.com
+   ```json
+   "env": {
+     "VITE_API_URL": "https://herstory.onrender.com"
+   }
    ```
 
-2. Update API calls to use the environment variable (if needed). The current setup uses relative paths, so you'll need to configure Vercel rewrites or update the fetch calls.
+2. All API calls in the client automatically use this URL when deployed on Vercel, and use relative paths when deployed on Render (same origin).
 
 ### Step 2: Deploy to Vercel
 
@@ -163,16 +167,9 @@ Update your Render backend to allow requests from Vercel:
 
 1. In your Render service, add environment variable:
    - `CORS_ORIGIN` = `https://your-vercel-app.vercel.app`
+   - You can add multiple origins separated by commas: `https://app1.vercel.app,https://app2.vercel.app`
 
-2. Update `server/node-build.ts` to use CORS origin from env:
-   ```typescript
-   app.use(
-     cors({
-       origin: process.env.CORS_ORIGIN || "*",
-       credentials: true,
-     }),
-   );
-   ```
+2. The server is already configured to handle CORS from the environment variable.
 
 ---
 

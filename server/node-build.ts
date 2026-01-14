@@ -23,8 +23,13 @@ export async function createServer() {
   await connectDatabase();
 
   // CORS configuration
+  // Allow requests from Vercel or other origins if specified
+  const allowedOrigins = process.env.CORS_ORIGIN 
+    ? process.env.CORS_ORIGIN.split(',').map(origin => origin.trim())
+    : '*';
+  
   const corsOptions = {
-    origin: process.env.CORS_ORIGIN || "*",
+    origin: allowedOrigins,
     credentials: true,
   };
   app.use(cors(corsOptions));
