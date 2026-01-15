@@ -15,8 +15,8 @@ export default function Services() {
   const services = [
     {
       icon: Briefcase,
-      title: "Litigation & Court Representation",
-      description: "Professional legal representation in court proceedings.",
+      title: "Litigation & Alternative Dispute Resolution",
+      description: "Professional legal representation in court proceedings and alternative dispute resolution.",
     },
     {
       icon: FileText,
