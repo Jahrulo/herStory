@@ -33,7 +33,7 @@ export default function Home() {
               Legal practitioner | Feminist Storyteller | Tech & Gender Policy Enthusiast
             </p>
             <p className="text-center text-gray-100 leading-relaxed text-sm md:text-base">
-              A Sierra Leonean Lawyer and founder of Embracing HERstory, dedicated to amplifying women's voices at the intersection of law, technology, and gender justice.
+              A Lawyer and founder of Embracing HERstory, dedicated to amplifying women's voices at the intersection of law, technology, and gender justice.
             </p>
           </div>
         </div>

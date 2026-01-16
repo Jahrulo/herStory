@@ -47,7 +47,7 @@ export default function About() {
           {/* Bio */}
           <div className="mb-8 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-200/50 animate-fade-in">
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-4">
-              I am a Sierra Leonean lawyer, writer, and feminist storyteller
+              I am a lawyer, writer, and feminist storyteller
               committed to reshaping how we understand justice, gender, and
               social systems. My work sits at the intersection of law,
               technology, gender, and social change—spanning litigation, policy
